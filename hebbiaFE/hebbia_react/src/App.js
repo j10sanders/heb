@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { ChakraProvider } from "@chakra-ui/react";
-import { Input, Box } from "@chakra-ui/react";
+import { Input, Box, Button, Container, Textarea } from "@chakra-ui/react";
 
 function App() {
   const [success, setSuccess] = useState(false);
@@ -50,27 +50,31 @@ function App() {
         overflow="hidden"
         p="6"
       >
-        <p>The best result is: {response}</p>
+        <Container centerContent>The best result is: {response}</Container>
         <Box p="6">
           <Box display="flex" alignItems="baseline" pb="12">
             <form onSubmit={onSubmit}>
               <label htmlFor="name">File Name:</label>
               <Input type="text" name="name" {...register("name")} />
               <label htmlFor="content">Content:</label>
-              <Input
+              <Textarea
                 type="textArea"
                 name="content"
                 {...register("content")}
                 lg
               />
-              <Input type="submit" value="Submit" />
+              <Button type="submit" value="Submit" mt="3">
+                Submit
+              </Button>
             </form>
           </Box>
 
           <form onSubmit={onSearch}>
             <label htmlFor="search">Search sentence:</label>
             <Input type="textArea" name="search" {...register("search")} />
-            <Input type="submit" value="Submit" />
+            <Button type="submit" value="Submit" mt="3">
+              Search
+            </Button>
           </form>
         </Box>
       </Box>
