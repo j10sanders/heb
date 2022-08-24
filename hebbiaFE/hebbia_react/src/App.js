@@ -49,19 +49,21 @@ function App() {
         borderRadius="lg"
         overflow="hidden"
         p="6"
+        bgGradient="linear(to-r, blue.100, blue.200)"
       >
         <Container centerContent>The best result is: {response}</Container>
         <Box p="6">
           <Box display="flex" alignItems="baseline" pb="12">
             <form onSubmit={onSubmit}>
               <label htmlFor="name">File Name:</label>
-              <Input type="text" name="name" {...register("name")} />
+              <Input type="text" name="name" {...register("name")} bg="white" />
               <label htmlFor="content">Content:</label>
               <Textarea
                 type="textArea"
                 name="content"
                 {...register("content")}
                 lg
+                bg="white"
               />
               <Button type="submit" value="Submit" mt="3">
                 Submit
@@ -71,7 +73,12 @@ function App() {
 
           <form onSubmit={onSearch}>
             <label htmlFor="search">Search sentence:</label>
-            <Input type="textArea" name="search" {...register("search")} />
+            <Input
+              type="textArea"
+              name="search"
+              {...register("search")}
+              bg="white"
+            />
             <Button type="submit" value="Submit" mt="3">
               Search
             </Button>
