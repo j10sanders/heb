@@ -11,17 +11,14 @@ import {
   Text,
   Center,
   Divider,
+  useToast,
 } from "@chakra-ui/react";
 
 function App() {
-  const [success, setSuccess] = useState(false);
   const [response, setResponse] = useState("");
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
+  const toast = useToast();
 
   const onSubmit = handleSubmit((data) => {
     console.log(data, "data");
@@ -31,7 +28,13 @@ function App() {
       .post("/upload", { name, content })
       .then((response) => {
         if (response.status === 200) {
-          setSuccess(true);
+          toast({
+            title: "Uploaded",
+            description: "Your json was uploaded",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+          });
         }
       })
       .catch((err) => console.log(err));
@@ -39,11 +42,9 @@ function App() {
 
   const onSearch = handleSubmit((data) => {
     axios
-      .post("/test", { search: data.search })
+      .post("/search", { search: data.search })
       .then((response) => {
         if (response.status === 200) {
-          setSuccess(true);
-          console.log(response.data, "DATA");
           setResponse(response.data.search);
         }
       })
@@ -108,6 +109,7 @@ function App() {
         </Box>
         <Box
           minW="sm"
+          maxW="sm"
           borderWidth="1px"
           borderRadius="lg"
           minH="400"
