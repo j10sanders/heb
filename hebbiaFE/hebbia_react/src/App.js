@@ -16,13 +16,11 @@ import {
 
 function App() {
   const [response, setResponse] = useState("");
-
   const { register, handleSubmit } = useForm();
+
   const toast = useToast();
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data, "data");
-    console.log(data, "data");
     const { name, content } = data;
     axios
       .post("/upload", { name, content })
